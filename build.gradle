@@ -1,7 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
 plugins {
 	id 'org.springframework.boot' version '2.2.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+}
+
+eclipse {
+    classpath {
+      file {
+            whenMerged {
+                def source = entries.find { it.path == 'src/main/java' }
+                source.entryAttributes['ignore_optional_problems'] = 'true'
+            }
+        }
+    }
 }
 
 group = 'com.5starworkflow'
