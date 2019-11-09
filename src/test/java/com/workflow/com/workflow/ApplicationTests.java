@@ -1,4 +1,4 @@
-package com.starworkflow.starworkflow;
+package com.workflow.com.workflow;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
