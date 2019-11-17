@@ -25,7 +25,7 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		List<User> allUsers = userrepo.getAllUsers();
-		System.out.print("-----------+"+allUsers.size()+"------------------");
+		//System.out.print("-----------+"+allUsers.size()+"------------------");
 		//userrepo.addUser();
 		for(User user : allUsers) {
 			inMemoryUserList.add(new JwtUserDetails(user.getId(), user.getLogin(), user.getPassword(), user.getRole()));
