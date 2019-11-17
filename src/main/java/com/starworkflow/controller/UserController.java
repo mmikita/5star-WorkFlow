@@ -1,7 +1,10 @@
 package com.starworkflow.controller;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -9,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 	@PostMapping("/register")
-	public String getEmployeeByID() {
-	System.out.println("-=----------------------------jestem w kontrolerze");
+	public String getEmployeeByID(@RequestBody Map<String, Object> payload) {
+	System.out.println("-=----------------------------jestem w kontrolerze: " + payload);
 		
 		return "huhu";
 	}
