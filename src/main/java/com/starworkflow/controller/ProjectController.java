@@ -15,10 +15,6 @@ public class ProjectController {
 	@Autowired
 	ProjectRepository repo;
 	
-	
-
-
-
 	@GetMapping("/rest")
 	public String getEmployeeByID() {
 		repo.addProject();
