@@ -18,11 +18,11 @@ public class UserController {
 	UserService service;
 	
 	@PostMapping("/register")
-	public String registerUser(@RequestBody Map<String, Object> data) {
+	public boolean registerUser(@RequestBody Map<String, Object> data) {
 
 	boolean isRegistered = service.registerUser(data);
 		
-		return "huhu";
+		return isRegistered;
 	}
 	
 	

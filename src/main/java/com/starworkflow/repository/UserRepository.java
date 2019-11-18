@@ -10,12 +10,13 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.starworkflow.model.User;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 @Repository
 public class UserRepository {
 	
-
-	
+    static Logger logger = Logger.getLogger(UserRepository.class);	
 	@Transactional
 	public void addUser(String login, String password) {
 		User user = new User();
@@ -29,10 +30,7 @@ public class UserRepository {
 	@Transactional
 	public List<User> getAllUsers() {
         Query q = em.createQuery("select e from User e", User.class);
-
-		
 		return q.getResultList();
-	
 		
 	}
 	
