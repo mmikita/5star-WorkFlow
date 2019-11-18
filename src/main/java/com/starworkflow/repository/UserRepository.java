@@ -17,10 +17,10 @@ public class UserRepository {
 
 	
 	@Transactional
-	public void addUser() {
+	public void addUser(String login, String password) {
 		User user = new User();
-		user.setLogin("in28minutes");
-		user.setPassword("$2a$10$3zHzb.Npv1hfZbLEU5qsdOju/tk2je6W6PnNnY.c1ujWPcZh4PL6e");
+		user.setLogin(login);
+		user.setPassword(password);
 		user.setRole("ROLE_USER_2");
 		em.persist(user);
 		
