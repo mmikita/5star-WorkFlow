@@ -1,15 +1,39 @@
 package com.starworkflow.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Status {
 	 @GeneratedValue
 	 @Id private Long id;
-	 private String name;
+	  @ManyToOne //add column definitions as needed
+	  private Status status;      //each Domain with parent==null is a root domain, all others are subdomains
+
+	  @OneToMany //add column definitions as needed
+	  private List<Status> subStatues;
+	 public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public List<Status> getSubStatues() {
+		return subStatues;
+	}
+
+	public void setSubStatues(List<Status> subStatues) {
+		this.subStatues = subStatues;
+	}
+
+	private String name;
 	 private String statusNote;
 	 private String userNote;
 	 private boolean finish;
