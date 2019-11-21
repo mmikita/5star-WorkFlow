@@ -10,14 +10,20 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Status {
-	 @GeneratedValue
-	 @Id private Long id;
-	  @ManyToOne //add column definitions as needed
-	  private Status status;      //each Domain with parent==null is a root domain, all others are subdomains
+	@GeneratedValue
+	@Id
+	private Long id;
+	@ManyToOne 
+	private Status status; 
+	private String name;
+	private String statusNote;
+	private String userNote;
+	private boolean finish;
 
-	  @OneToMany //add column definitions as needed
-	  private List<Status> subStatues;
-	 public Status getStatus() {
+	@OneToMany // add column definitions as needed
+	private List<Status> subStatues;
+
+	public Status getStatus() {
 		return status;
 	}
 
@@ -33,12 +39,7 @@ public class Status {
 		this.subStatues = subStatues;
 	}
 
-	private String name;
-	 private String statusNote;
-	 private String userNote;
-	 private boolean finish;
-	 
-	 public boolean isFinish() {
+	public boolean isFinish() {
 		return finish;
 	}
 
@@ -70,19 +71,12 @@ public class Status {
 		this.userNote = userNote;
 	}
 
-
-	 
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;		
+		this.name = name;
 	}
-	
-	
-	
-	
-	
+
 }
