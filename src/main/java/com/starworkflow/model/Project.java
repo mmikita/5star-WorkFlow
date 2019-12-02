@@ -1,6 +1,8 @@
 package com.starworkflow.model;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,17 @@ public class Project {
 	 @OneToMany
 	 @JoinColumn(name = "project_id")
 	 private List<Status> statues;
+	 private String uuid = UUID.randomUUID().toString();
+	 
+	 public int hashCode() {
+		 return Objects.hash(uuid);
+	 }
+	 
+	 public boolean equals(Object that) {
+		 return this == that | that instanceof Project
+				 && Objects.equals(uuid, ((Project)that).uuid);
+		 
+	 }
 	 
 
 	public Long getId() {
