@@ -23,7 +23,11 @@ public class Project {
 	 private List<Status> statues;
 	 private String uuid = UUID.randomUUID().toString();
 	 
-	 public int hashCode() {
+	 public String getUuid() {
+		return uuid;
+	}
+
+	public int hashCode() {
 		 return Objects.hash(uuid);
 	 }
 	 

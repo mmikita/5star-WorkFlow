@@ -18,7 +18,6 @@ public class ProjectController {
 	
 	@PostMapping("/createNew5star")
 	public String getEmployeeByID() {
-		System.out.print("jestem i--------------------------");
 		Project project = service.create5starProject();
 		Gson gson = new Gson();
 		String starinJson = gson.toJson(project);
