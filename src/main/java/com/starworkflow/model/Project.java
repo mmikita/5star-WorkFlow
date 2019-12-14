@@ -31,7 +31,11 @@ public class Project {
 		 return Objects.hash(uuid);
 	 }
 	 
-	 public boolean equals(Object that) {
+	 public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public boolean equals(Object that) {
 		 return this == that | that instanceof Project
 				 && Objects.equals(uuid, ((Project)that).uuid);
 		 

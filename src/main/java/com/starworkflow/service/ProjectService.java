@@ -63,7 +63,6 @@ public class ProjectService {
 		statuesList.add(status8);
 		
 		project.setStatues(statuesList);
-		System.out.print("dawaj" + project.getUuid());
 		
 		return project;
 	}

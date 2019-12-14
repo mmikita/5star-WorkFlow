@@ -3,7 +3,11 @@ package com.starworkflow.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+
 
 import com.google.gson.Gson;
 import com.starworkflow.model.Project;
@@ -24,7 +28,13 @@ public class ProjectController {
 		return starinJson;
 	}
 	
-	
+    @ResponseBody
+	@PostMapping(path = "/addNew5star",headers = {
+    "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String addNew5Star(@RequestBody Project project) {
+		System.out.println("uuid: "+ project.getUuid() + " name: "+project.getName());
+		return "";
+	}
 	
 
 
