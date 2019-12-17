@@ -49,4 +49,11 @@ public class UserService {
 		}
 		return toReturn;
 	}
-}
+	
+	public User getUserUserName(String username) {
+		
+		return repository.getUserByUsername(username);
+		
+	}
+	}
+
