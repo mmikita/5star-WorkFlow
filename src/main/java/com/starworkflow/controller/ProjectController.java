@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -15,7 +16,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.starworkflow.auth.JwtTokenUtil;
 import com.starworkflow.model.Project;
-import com.starworkflow.model.User;
 import com.starworkflow.service.ProjectService;
 import com.starworkflow.service.UserService;
 
@@ -43,14 +43,13 @@ public class ProjectController {
 	@PostMapping(path = "/addNew5star",headers = {
 			
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String addNew5Star(@RequestBody Project project) {
+	public String addNew5Star(@RequestBody(required=false) Project project) {
 		System.out.println("uuid: "+ project.getUuid() + " name: "+project.getName());
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	    String token = request.getHeader("Authorization").split(" ")[1];
 		jwtTokenUtil.refreshToken(token);
 
-	   User user =  uService.getUserUserName(jwtTokenUtil.getUsernameFromToken(token));
-		System.out.println("token: "+token +" userNamefromToken: "+jwtTokenUtil.getUsernameFromToken(token)+" user: "+ user.getLogin());
+		System.out.println(project.getStatues().get(0).getName() + project.getName()+"user: "+project.getUserName());
 
 		
 		return "";
