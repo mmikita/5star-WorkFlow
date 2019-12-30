@@ -32,8 +32,8 @@ public class ProjectRepository {
 		this.em = em;
 	}
 	
-	public User getProjectByuuid(String uuid) {
-		List<User> projects = em.createQuery("SELECT p FROM Project p WHERE p.uuid = :uuid").setParameter("uuid", uuid).getResultList();
+	public Project getProjectByuuid(String uuid) {
+		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.uuid = :uuid").setParameter("uuid", uuid).getResultList();
 
 		
 		return projects.get(0);
