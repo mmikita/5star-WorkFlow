@@ -1,5 +1,7 @@
 package com.starworkflow.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -7,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.starworkflow.model.Project;
+import com.starworkflow.model.User;
 
 @Repository
 public class ProjectRepository {
@@ -28,6 +31,14 @@ public class ProjectRepository {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
+	
+	public User getProjectByuuid(String uuid) {
+		List<User> projects = em.createQuery("SELECT p FROM Project p WHERE p.uuid = :uuid").setParameter("uuid", uuid).getResultList();
+
+		
+		return projects.get(0);
+	}
+	
 	     
  
 	

@@ -12,6 +12,15 @@ import com.starworkflow.model.Status;
 
 @Service
 public class ProjectService {
+	
+	public boolean addOrEditSite(Project project) {
+		
+		
+		
+		return false;
+	}
+	
+	
 
 	public Project create5starProject() {
 

@@ -35,7 +35,7 @@ public class UserRepository {
 	}
 	
 	public User getUserByUsername(String username) {
-		List<User> users = em.createQuery("SELECT p FROM User p WHERE p.login = :username").setParameter("username", username).getResultList();
+		List<User> users = em.createQuery("SELECT p FROM project p WHERE p.login = :username").setParameter("username", username).getResultList();
 
 		
 		return users.get(0);
