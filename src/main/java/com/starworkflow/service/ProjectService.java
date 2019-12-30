@@ -3,6 +3,8 @@ package com.starworkflow.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import com.starworkflow.repository.ProjectRepository;
 
 @Service
 public class ProjectService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	
 	@Autowired
 	ProjectRepository repo;
@@ -21,8 +25,23 @@ public class ProjectService {
 	public boolean addOrEditSite(Project project) {
 		Project fondProject = repo.getProjectByuuid(project.getUuid());
 		
+	if(fondProject==null) {
+		logger.info("not fond project with uuid: "+project.getUuid()+" adding new project...");
+		repo.addOrEdit(project);
+		return true;
+	}else {
+		logger.info("fond project, updating values...");
+		fondProject.setName(project.getName());
+		fondProject.setContractNumber(project.getContractNumber());
+		fondProject.setURL(project.getURL());
+		repo.addOrEdit(fondProject);
+
+
 		
-		return false;
+	}
+	
+	return false;
+		
 	}
 	
 	

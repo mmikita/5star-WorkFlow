@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -42,8 +41,11 @@ public class ProjectController {
     @ResponseBody
 	@PostMapping(path = "/addNew5star",headers = {
 			
+			
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
+		System.out.print("uuid projektu: " + project.getUuid());
+
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	    String token = request.getHeader("Authorization").split(" ")[1];
 		jwtTokenUtil.refreshToken(token);

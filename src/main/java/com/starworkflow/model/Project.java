@@ -6,11 +6,9 @@ import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,24 +19,37 @@ public class Project {
 	 @GeneratedValue
 	 @Id private Long id;
 	 private String name;
-	 @OneToMany
-	 @JoinColumn(name = "project_id")
+	 private String contractNumber;
+	 private String URL;
+
+
+	 public String getContractNumber() {
+		return contractNumber;
+	}
+
+	public void setContractNumber(String contractNumber) {
+		this.contractNumber = contractNumber;
+	}
+
+	public String getURL() {
+		return URL;
+	}
+
+	public void setURL(String uRL) {
+		URL = uRL;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="status")
 	 private List<Status> statues;
 	 
 	 private String userName;
 	 public String getUserName() {
 		return userName;
 	}
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
 	private String uuid = UUID.randomUUID().toString();
-	 
-	 
-
-	 
 	 public String getUuid() {
 		return uuid;
 	}
