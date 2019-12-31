@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.starworkflow.model.Project;
 import com.starworkflow.model.Status;
 import com.starworkflow.repository.ProjectRepository;
+import com.starworkflow.repository.UserRepository;
 
 
 
@@ -21,6 +22,7 @@ public class ProjectService {
 	
 	@Autowired
 	ProjectRepository repo;
+
 	
 	public boolean addOrEditSite(Project project) {
 		Project fondProject = repo.getProjectByuuid(project.getUuid());
@@ -34,6 +36,7 @@ public class ProjectService {
 		fondProject.setName(project.getName());
 		fondProject.setContractNumber(project.getContractNumber());
 		fondProject.setURL(project.getURL());
+		fondProject.setStatues(null);
 		repo.addOrEdit(fondProject);
 
 
@@ -44,6 +47,10 @@ public class ProjectService {
 		
 	}
 	
+	public List<Project> getAllProjectsByUserName(String username){
+		List<Project> projects = repo.getProjecsByUsername(username);
+		return projects;
+	}
 	
 
 	public Project create5starProject() {
@@ -77,7 +84,6 @@ public class ProjectService {
 		Status status51 = new Status();
 		status51.setName("Prace nad menu");
 		status51.setStatusNote("ojojo podzakladki");
-		status5.setStatus(status51);
 		statuesList.add(status5);
 		
 		Status status6 = new Status();

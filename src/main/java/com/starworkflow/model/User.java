@@ -2,6 +2,7 @@ package com.starworkflow.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class User {
 	 @GeneratedValue
 	 @Id private Long id;
 	 
-	 @OneToMany
+	 @OneToMany(cascade = CascadeType.ALL)
 	 List<Project> projects;
 	 private String login;
 	 private String password;

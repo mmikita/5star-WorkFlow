@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.starworkflow.model.Project;
-import com.starworkflow.model.User;
+import com.starworkflow.model.Status;
 
 /**
  * @author Michaił
@@ -40,7 +40,6 @@ public class ProjectRepository {
 	public Project getProjectByuuid(String uuid) {
 		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.uuid = :uuid")
 				.setParameter("uuid", uuid).getResultList();
-
 		if (projects.size() != 0) {
 			return projects.get(0);
 
@@ -50,15 +49,18 @@ public class ProjectRepository {
 	
 	@Transactional
 	public void addOrEdit(Project project) {
-		project.setStatues(null);
+	
 		
 		em.persist(project);
-		
+
+	
 	}
-	public void update(Project project) {
-		
-		em.merge(project);
-		
+	
+	public List<Project> getProjecsByUsername(String username){
+		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username")
+				.setParameter("username", username).getResultList();
+		return projects;
 	}
+
 
 }

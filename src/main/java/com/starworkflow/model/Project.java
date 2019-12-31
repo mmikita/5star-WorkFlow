@@ -39,7 +39,8 @@ public class Project {
 		URL = uRL;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL,mappedBy="status")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="Project_ID")
 	 private List<Status> statues;
 	 
 	 private String userName;
