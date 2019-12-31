@@ -36,7 +36,6 @@ public class ProjectService {
 		fondProject.setName(project.getName());
 		fondProject.setContractNumber(project.getContractNumber());
 		fondProject.setURL(project.getURL());
-		fondProject.setStatues(null);
 		repo.addOrEdit(fondProject);
 
 
