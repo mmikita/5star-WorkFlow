@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.starworkflow.model.Project;
 import com.starworkflow.model.Status;
 import com.starworkflow.repository.ProjectRepository;
-import com.starworkflow.repository.UserRepository;
 
 
 
@@ -37,11 +36,7 @@ public class ProjectService {
 		fondProject.setContractNumber(project.getContractNumber());
 		fondProject.setURL(project.getURL());
 		repo.addOrEdit(fondProject);
-
-
-		
 	}
-	
 	return false;
 		
 	}
@@ -50,8 +45,6 @@ public class ProjectService {
 		List<Project> projects = repo.getProjecsByUsername(username);
 		return projects;
 	}
-	
-
 	public Project create5starProject() {
 
 		Project project = new Project();		

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import com.starworkflow.model.User;
 import com.starworkflow.repository.UserRepository;
@@ -15,7 +14,6 @@ import com.starworkflow.repository.UserRepository;
 
 @Service
 public class UserService {
-	private static String hiddenPassword = "qwerty";
 
 	static Logger logger = Logger.getLogger(UserService.class);	
 	@Autowired

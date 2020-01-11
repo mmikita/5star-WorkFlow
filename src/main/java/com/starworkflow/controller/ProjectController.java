@@ -45,7 +45,6 @@ public class ProjectController {
 	@PostMapping(path = "/addNew5star",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
-		System.out.print("uuid projektu: " + project.getUuid()+ " " + project.getStatues().toString());
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 	    String token = request.getHeader("Authorization").split(" ")[1];
 		jwtTokenUtil.refreshToken(token);
