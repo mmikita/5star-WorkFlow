@@ -97,5 +97,11 @@ public class ProjectService {
 		
 		return project;
 	}
+	
+public void deleteProjectByUuid(String uuid) {
+	Project project = repo.getProjectByuuid(uuid);
+	logger.info("delete project with uuid "+uuid);
+	repo.deleteProject(project);
+	}
 
 }

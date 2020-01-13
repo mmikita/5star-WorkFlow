@@ -1,6 +1,7 @@
 package com.starworkflow.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,6 +61,16 @@ public class ProjectController {
 		return projects;
 	}
     
+    //toDoBoolean
+	@PostMapping("/deleteProject")
+	public boolean deleteProject(@RequestBody Map<String, String> data) {
+
+service.deleteProjectByUuid(data.get("uuid"));
+
+	
+		
+		return true;
+	}
     
     
     

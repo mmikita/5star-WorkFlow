@@ -61,6 +61,11 @@ public class ProjectRepository {
 				.setParameter("username", username).getResultList();
 		return projects;
 	}
+	@Transactional
+	public void deleteProject(Project project){
+		em.remove(project);
+	
+	}
 
 
 }
