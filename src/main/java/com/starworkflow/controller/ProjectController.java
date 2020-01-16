@@ -61,6 +61,16 @@ public class ProjectController {
 		return projects;
 	}
     
+    @ResponseBody
+ 	@PostMapping(path = "/getProject",headers = {
+     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
+ 	public Project getProjectByUuuid(@RequestBody Map<String, String> data) {
+
+    	
+    	
+    	return service.getProjectByUUid(data.get("uuid"));
+ 	}
+    
     //toDoBoolean
 	@PostMapping("/deleteProject")
 	public boolean deleteProject(@RequestBody Map<String, String> data) {

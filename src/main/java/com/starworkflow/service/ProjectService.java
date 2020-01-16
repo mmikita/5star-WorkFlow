@@ -104,4 +104,10 @@ public void deleteProjectByUuid(String uuid) {
 	repo.deleteProject(project);
 	}
 
+public Project getProjectByUUid(String uuid) {
+	
+	return repo.getProjectByuuid(uuid);
+
+}
+
 }
