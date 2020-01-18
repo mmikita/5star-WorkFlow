@@ -110,4 +110,10 @@ public Project getProjectByUUid(String uuid) {
 
 }
 
+public void changeStatus(boolean finish, boolean skipped, String uuid) {
+	
+	repo.changeStatus(finish, skipped, uuid);
+	
+}
+
 }

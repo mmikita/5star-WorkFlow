@@ -23,9 +23,7 @@ public class ProjectRepository {
 		Project project = new Project();
 		project.setName("nazwa");
 		em.persist(project);
-
 	}
-
 	@PersistenceContext
 	private EntityManager em;
 
@@ -42,10 +40,17 @@ public class ProjectRepository {
 				.setParameter("uuid", uuid).getResultList();
 		if (projects.size() != 0) {
 			return projects.get(0);
-
 		}
 		return null;
 	}
+	@Transactional
+	public void changeStatus(boolean finish, boolean skipped, String uuid) {
+		em.createQuery("update Status s set s.finish = :finish, s.skipped = :skipped where s.uuid = :uuid")
+		.setParameter("uuid", uuid)
+		.setParameter("finish", finish)
+		.setParameter("skipped", skipped).executeUpdate();
+	}
+	
 	
 	@Transactional
 	public void addOrEdit(Project project) {
