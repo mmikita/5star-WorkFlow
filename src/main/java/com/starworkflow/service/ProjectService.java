@@ -17,12 +17,8 @@ import com.starworkflow.repository.ProjectRepository;
 @Service
 public class ProjectService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-	
 	@Autowired
 	ProjectRepository repo;
-
-	
 	public boolean addOrEditSite(Project project) {
 		Project fondProject = repo.getProjectByuuid(project.getUuid());
 		
@@ -111,9 +107,8 @@ public Project getProjectByUUid(String uuid) {
 }
 
 public void changeStatus(boolean finish, boolean skipped, String uuid) {
-	
+	logger.info("updating status project with uuid "+uuid+"  to skipped: "+skipped +"  and finish: "+finish);
 	repo.changeStatus(finish, skipped, uuid);
-	
 }
 
 }

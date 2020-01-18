@@ -82,6 +82,21 @@ service.deleteProjectByUuid(data.get("uuid"));
 		return true;
 	}
     
+	
+    //toDoBoolean
+	@PostMapping("/changeStatus")
+	public boolean updateStatus(@RequestBody Map<String, Object> data) {
+		
+		
+		service.changeStatus((boolean)data.get("finish"), (boolean)data.get("skipped"), (String)data.get("uuid"));
+
+
+
+	
+		
+		return true;
+	}
+    
     
     
     
