@@ -49,26 +49,31 @@ public class ProjectService {
 		Status status1 = new Status();
 		status1.setName("instalacja strony");
 		status1.setStatusNote("Paczki instalacyjne: link");
+		status1.setOrderPlace(0);
 		statuesList.add(status1);
 		
 		Status status2 = new Status();
 		status2.setName("Aktualizacja");
 		status2.setStatusNote("Link do aktualizacji: link");;
+		status2.setOrderPlace(1);
 		statuesList.add(status2);
 		
 		Status status3 = new Status();
 		status3.setName("Zamiana zdjec");
 		status3.setStatusNote("Odrazu wyczyscic niepotrzebne pliki z imgaes/design");
+		status3.setOrderPlace(2);
 		statuesList.add(status3);
 		
 		Status status4 = new Status();
 		status4.setName("Ustawienia globalne");
 		status4.setStatusNote("Font, przyciski, itp itd");
+		status4.setOrderPlace(3);
 		statuesList.add(status4);
 		
 		Status status5 = new Status();
 		status5.setName("Prace nad strona glowna");
 		status5.setStatusNote("slider, boxy, menu");
+		status5.setOrderPlace(4);
 		Status status51 = new Status();
 		status51.setName("Prace nad menu");
 		status51.setStatusNote("ojojo podzakladki");
@@ -77,16 +82,19 @@ public class ProjectService {
 		Status status6 = new Status();
 		status6.setName("Prace nad strona kontakt");
 		status6.setStatusNote("formularz");
+		status6.setOrderPlace(5);
 		statuesList.add(status6);
 		
 		Status status7 = new Status();
 		status7.setName("Podstrony");
 		status7.setStatusNote("formularz");
+		status7.setOrderPlace(6);
 		statuesList.add(status7);
 		
 		Status status8 = new Status();
 		status8.setName("Prace końcowe");
 		status8.setStatusNote("ustaw JCH");
+		status8.setOrderPlace(7);
 		statuesList.add(status8);
 		
 		project.setStatues(statuesList);

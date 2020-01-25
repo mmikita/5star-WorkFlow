@@ -18,6 +18,19 @@ public class Status {
 	private String statusNote;
 	private String userNote;
 	private boolean finish;
+	private int orderPlace;
+
+
+
+
+
+	public int getOrderPlace() {
+		return orderPlace;
+	}
+	public void setOrderPlace(int orderPlace) {
+		this.orderPlace = orderPlace;
+	}
+
 	private boolean skipped;
 	private String uuid = UUID.randomUUID().toString();
 	 public String getUuid() {
