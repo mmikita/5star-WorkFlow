@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -18,6 +20,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.starworkflow.auth.JwtTokenUtil;
 import com.starworkflow.model.Project;
+import com.starworkflow.model.Status;
 import com.starworkflow.model.User;
 import com.starworkflow.service.ProjectService;
 import com.starworkflow.service.UserService;
@@ -65,20 +68,20 @@ public class ProjectController {
  	@PostMapping(path = "/getProject",headers = {
      "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
  	public Project getProjectByUuuid(@RequestBody Map<String, String> data) {
-
-    	
-    	
     	return service.getProjectByUUid(data.get("uuid"));
  	}
     
     //toDoBoolean
 	@PostMapping("/deleteProject")
 	public boolean deleteProject(@RequestBody Map<String, String> data) {
-
-service.deleteProjectByUuid(data.get("uuid"));
-
+    service.deleteProjectByUuid(data.get("uuid"));
+		return true;
+	}
 	
-		
+    @RequestMapping(value = "/updateOrderPlaces", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean updateOrderPlaces(@RequestBody List<Status> data) {
+    
+service.updateOrderPlaces(data);
 		return true;
 	}
     

@@ -40,7 +40,7 @@ public class Project {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="Project_ID")
+	@JoinColumn(name="Project_ID", referencedColumnName = "id")
 	 private List<Status> statues;
 	 
 	 private String userName;

@@ -1,13 +1,18 @@
 package com.starworkflow.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;// in play 2.3
 import com.starworkflow.model.Project;
 import com.starworkflow.model.Status;
 import com.starworkflow.repository.ProjectRepository;
@@ -109,6 +114,9 @@ public void deleteProjectByUuid(String uuid) {
 	}
 
 public Project getProjectByUUid(String uuid) {
+	Project project = repo.getProjectByuuid(uuid);
+	
+	Collections.sort(project.getStatues());	
 	
 	return repo.getProjectByuuid(uuid);
 
@@ -118,5 +126,24 @@ public void changeStatus(boolean finish, boolean skipped, String uuid) {
 	logger.info("updating status project with uuid "+uuid+"  to skipped: "+skipped +"  and finish: "+finish);
 	repo.changeStatus(finish, skipped, uuid);
 }
+
+public void updateOrderPlaces(List<Status> data) {
+	for(Status status: data) {
+		logger.debug("update status order for status with uuid: "+ status.getUuid());
+	Status newStatus = repo.getStatusByuuid(status.getUuid());
+	newStatus.setOrderPlace(status.getOrderPlace());
+repo.updateStatusOrder(status);
+}
+
+
+  
+
+
+
+	
+
+}
+
+
 
 }

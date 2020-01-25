@@ -1,16 +1,13 @@
 package com.starworkflow.model;
 
-import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Status {
+public class Status implements java.lang.Comparable<Status> {
 	@GeneratedValue
 	@Id
 	private Long id;
@@ -19,10 +16,6 @@ public class Status {
 	private String userNote;
 	private boolean finish;
 	private int orderPlace;
-
-
-
-
 
 	public int getOrderPlace() {
 		return orderPlace;
@@ -87,6 +80,17 @@ public class Status {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+			
+			
+	@Override
+	public int compareTo(Status status) {
+		if(this.getOrderPlace()>status.getOrderPlace()) {
+			return 1;
+		}
+		else {
+			return -1;
+		}	
 	}
 
 }
