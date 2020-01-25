@@ -52,7 +52,5 @@ public class UserService {
 		return repository.getUserByUsername(username);
 
 	}
-	
-	
 
 }

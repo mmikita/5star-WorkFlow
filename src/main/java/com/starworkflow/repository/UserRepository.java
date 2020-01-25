@@ -15,8 +15,9 @@ import org.apache.log4j.PropertyConfigurator;
 
 @Repository
 public class UserRepository {
-	
-    static Logger logger = Logger.getLogger(UserRepository.class);	
+
+	static Logger logger = Logger.getLogger(UserRepository.class);
+
 	@Transactional
 	public void addUser(String login, String password) {
 		User user = new User();
@@ -24,23 +25,24 @@ public class UserRepository {
 		user.setPassword(password);
 		user.setRole("ROLE_USER_2");
 		em.persist(user);
-		
+
 	}
-	
+
 	@Transactional
 	public List<User> getAllUsers() {
-        Query q = em.createQuery("select e from User e", User.class);
+		Query q = em.createQuery("select e from User e", User.class);
 		return q.getResultList();
-		
+
 	}
-	
+
 	public User getUserByUsername(String username) {
-		List<User> users = em.createQuery("SELECT p FROM project p WHERE p.login = :username").setParameter("username", username).getResultList();
+		List<User> users = em.createQuery("SELECT p FROM project p WHERE p.login = :username")
+				.setParameter("username", username).getResultList();
 		return users.get(0);
 	}
-	
+
 	@PersistenceContext
-	   private EntityManager em;
+	private EntityManager em;
 
 	public EntityManager getEm() {
 		return em;
@@ -49,6 +51,5 @@ public class UserRepository {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-	    
 
 }

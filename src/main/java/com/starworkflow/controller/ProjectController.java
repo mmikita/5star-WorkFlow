@@ -78,6 +78,13 @@ public class ProjectController {
 		return true;
 	}
 	
+	@PostMapping("/addStatus")
+	public boolean addStatus(@RequestBody Map<String, String> data) {
+    
+		
+		return true;
+	}
+	
     @RequestMapping(value = "/updateOrderPlaces", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateOrderPlaces(@RequestBody List<Status> data) {
     
@@ -89,14 +96,7 @@ service.updateOrderPlaces(data);
     //toDoBoolean
 	@PostMapping("/changeStatus")
 	public boolean updateStatus(@RequestBody Map<String, Object> data) {
-		
-		
 		service.changeStatus((boolean)data.get("finish"), (boolean)data.get("skipped"), (String)data.get("uuid"));
-
-
-
-	
-		
 		return true;
 	}
     
