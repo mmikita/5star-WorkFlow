@@ -54,9 +54,7 @@ public class ProjectController {
 	@PostMapping(path = "/projects/addNew5star",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-	    String token = request.getHeader("Authorization").split(" ")[1];
-		jwtTokenUtil.refreshToken(token);
+
 		return service.addOrEditSite(project);
 	}
     
@@ -79,17 +77,20 @@ public class ProjectController {
     	return service.getProjectByUUid(data.get("uuid"));
  	}
     
-    //toDoBoolean
 	@PostMapping("/projects/deleteProject")
 	public boolean deleteProject(@RequestBody Map<String, String> data) {
     service.deleteProjectByUuid(data.get("uuid"));
 		return true;
 	}
 	
+	@PostMapping("/projects/deleteStatus")
+	public boolean deleteStatus(@RequestBody Map<String, String> data) {
+    service.deleteStatusByUuid(data.get("uuid"));
+		return true;
+	}
+	
 	@PostMapping("/projects/addStatus")
 	public boolean addStatus(@RequestBody Map<String, String> data) {
-    
-		
 		return true;
 	}
 	
