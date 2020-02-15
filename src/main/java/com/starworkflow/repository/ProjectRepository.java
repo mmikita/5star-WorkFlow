@@ -81,6 +81,11 @@ public class ProjectRepository {
 	public void addStatus(Status status) {
 		em.persist(status);
 	}
+	@Transactional
+	public void deleteStatusByUuid(String uuid) {
+		em.createQuery("delete Status s where s.uuid = :uuid")
+		.setParameter("uuid", uuid).executeUpdate();
+	}
 	
 	public List<Project> getProjecsByUsername(String username) {
 		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username")

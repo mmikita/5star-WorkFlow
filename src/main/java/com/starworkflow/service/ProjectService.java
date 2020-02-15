@@ -110,6 +110,11 @@ public class ProjectService {
 		logger.info("delete project with uuid " + uuid);
 		repo.deleteProject(project);
 	}
+	
+	public void deleteStatusByUuid(String uuid) {
+		logger.info("delete status with uuid " + uuid);
+		repo.deleteStatusByUuid(uuid);
+	}
 
 	public Project getProjectByUUid(String uuid) {
 		Project project = repo.getProjectByuuid(uuid);
