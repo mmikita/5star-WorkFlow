@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +39,10 @@ public class ProjectController {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
-	@PostMapping("/createNew5star")
+	  @Autowired
+	  private UserDetailsService jwtInMemoryUserDetailsService;
+	
+	@PostMapping("/projects/createNew5star")
 	public String getEmployeeByID() {
 		Project project = service.create5starProject();
 		Gson gson = new Gson();
@@ -46,7 +51,7 @@ public class ProjectController {
 	}
 	
     @ResponseBody
-	@PostMapping(path = "/addNew5star",headers = {
+	@PostMapping(path = "/projects/addNew5star",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -57,35 +62,38 @@ public class ProjectController {
     
     
     @ResponseBody
-	@PostMapping(path = "/getProjectsByUser",headers = {
+	@PostMapping(path = "/projects/getProjectsByUser",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Project> getAllProjectsByUser(@RequestBody User user) {
+    	
+        final UserDetails userDetails = jwtInMemoryUserDetailsService.loadUserByUsername(user.getLogin());
+
     	List<Project> projects = service.getAllProjectsByUserName(user.getLogin());
 		return projects;
 	}
     
     @ResponseBody
- 	@PostMapping(path = "/getProject",headers = {
+ 	@PostMapping(path = "/projects/getProject",headers = {
      "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
  	public Project getProjectByUuuid(@RequestBody Map<String, String> data) {
     	return service.getProjectByUUid(data.get("uuid"));
  	}
     
     //toDoBoolean
-	@PostMapping("/deleteProject")
+	@PostMapping("/projects/deleteProject")
 	public boolean deleteProject(@RequestBody Map<String, String> data) {
     service.deleteProjectByUuid(data.get("uuid"));
 		return true;
 	}
 	
-	@PostMapping("/addStatus")
+	@PostMapping("/projects/addStatus")
 	public boolean addStatus(@RequestBody Map<String, String> data) {
     
 		
 		return true;
 	}
 	
-    @RequestMapping(value = "/updateOrderPlaces", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/projects/updateOrderPlaces", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateOrderPlaces(@RequestBody List<Status> data) {
     
 service.updateOrderPlaces(data);
@@ -94,7 +102,7 @@ service.updateOrderPlaces(data);
     
 	
     //toDoBoolean
-	@PostMapping("/changeStatus")
+	@PostMapping("/projects/changeStatus")
 	public boolean updateStatus(@RequestBody Map<String, Object> data) {
 		service.changeStatus((boolean)data.get("finish"), (boolean)data.get("skipped"), (String)data.get("uuid"));
 		return true;

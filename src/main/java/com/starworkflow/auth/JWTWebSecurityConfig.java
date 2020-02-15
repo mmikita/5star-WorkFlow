@@ -58,7 +58,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
             .csrf().disable()
             .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS).and()
             .authorizeRequests()
             .anyRequest().authenticated();
 
@@ -87,7 +87,10 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(
                 HttpMethod.POST,
                 "/register" //Other Stuff You want to Ignore
-            )
+            )  .antMatchers(
+                    HttpMethod.POST,
+                    "/getProjectsByUser" //Other Stuff You want to Ignore
+                )
             .and()
             .ignoring()
             .antMatchers("/h2-console/**/**");//Should not be in Production!
