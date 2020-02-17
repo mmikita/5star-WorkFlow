@@ -13,6 +13,12 @@ public class Status implements java.lang.Comparable<Status> {
 	private Long id;
 	private String name;
 	private String statusNote;
+	@Override
+	public String toString() {
+		return "Status [id=" + id + ", name=" + name + ", statusNote=" + statusNote + ", userNote=" + userNote
+				+ ", finish=" + finish + ", orderPlace=" + orderPlace + ", skipped=" + skipped + ", uuid=" + uuid + "]";
+	}
+
 	private String userNote;
 	private boolean finish;
 	private int orderPlace;

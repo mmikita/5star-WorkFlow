@@ -90,9 +90,12 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/projects/addStatus")
-	public boolean addStatus(@RequestBody Map<String, String> data) {
+	public boolean addStatus(@RequestBody Status status) {
+		System.out.print("status" + status.toString());
 		return true;
 	}
+	
+
 	
     @RequestMapping(value = "/projects/updateOrderPlaces", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public boolean updateOrderPlaces(@RequestBody List<Status> data) {
