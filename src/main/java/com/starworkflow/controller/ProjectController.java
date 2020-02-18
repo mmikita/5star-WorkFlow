@@ -90,8 +90,9 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/projects/addStatus")
-	public boolean addStatus(@RequestBody Status status) {
-		System.out.print("status" + status.toString());
+	public boolean addStatus(@RequestBody Map<String, String> data) {
+service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
+		
 		return true;
 	}
 	
@@ -103,8 +104,6 @@ public class ProjectController {
 service.updateOrderPlaces(data);
 		return true;
 	}
-    
-	
     //toDoBoolean
 	@PostMapping("/projects/changeStatus")
 	public boolean updateStatus(@RequestBody Map<String, Object> data) {

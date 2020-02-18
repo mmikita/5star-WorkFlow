@@ -99,4 +99,14 @@ public class ProjectRepository {
 
 	}
 
+	
+	public int getLastStatusOrder(String projectUuid) {
+			Project project = this.getProjectByuuid(projectUuid);
+			List<Status> statues = em.createQuery("SELECT s FROM Status s WHERE s.id = :id").setParameter("id", project.getId())
+					.getResultList();
+		return statues.size();
+
+	}
+	
+	
 }

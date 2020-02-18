@@ -137,5 +137,17 @@ public class ProjectService {
 		}
 
 	}
+	
+	public void addStatus(String name, String statusNote, String projectUuid) {
+		
+		Project project = repo.getProjectByuuid(projectUuid);
+		Status status = new Status();
+		status.setName(name);
+		status.setStatusNote(statusNote);
+		status.setOrderPlace(project.getStatues().size());
+		project.getStatues().add(status);
+		repo.addOrEdit(project);
+		
+	}
 
 }
