@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;// in play 2.3
+import com.google.gson.Gson;
 import com.starworkflow.model.Project;
 import com.starworkflow.model.Status;
 import com.starworkflow.repository.ProjectRepository;
@@ -25,11 +26,13 @@ public class ProjectService {
 
 	public boolean addOrEditSite(Project project) {
 		Project fondProject = repo.getProjectByuuid(project.getUuid());
-		
-
 		if (fondProject == null) {
 			logger.info("not fond project with uuid: " + project.getUuid() + " adding new project...");
-
+			for(Status status : project.getStatues()) {
+				logger.info("intooooooooooo " + status.toString());
+				 status.setId(null);
+				repo.addStatus(status);
+			}
 			repo.addOrEdit(project);
 			return true;
 		} else {
@@ -107,14 +110,21 @@ public class ProjectService {
 		return project;
 	}
 	
-	public Project create5starProject() {
-		Project project = new Project();
-		Status status2 = new Status();
-		status2.setName("Aktualizacja");
-		status2.setStatusNote("Link do aktualizacji: link");
-		List<Status> statuesList = new ArrayList<Status>();
-		statuesList.add(status2);
-		project.setStatues(statuesList);
+	public Project create5starProject(String username) {
+		Project baseProject = repo.getBaseProjectByUsername(username);
+		List<Status> statuesList = baseProject.getStatues();
+		  Gson gson = new Gson();
+		  Project project = gson.fromJson(gson.toJson(baseProject), Project.class);
+		  project.setUuid(null);
+		  project.setId(null);
+		  List<Status> newStatues = new ArrayList<>();
+			for(Status status : project.getStatues()) {
+				Status newStatus = gson.fromJson(gson.toJson(status), Status.class);
+				newStatus.setId(null);
+				newStatus.setUuid(null);
+				newStatues.add(newStatus);
+			}
+		project.setStatues(newStatues);
 		return project;
 	}
 

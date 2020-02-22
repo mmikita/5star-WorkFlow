@@ -92,6 +92,12 @@ public class ProjectRepository {
 				.setParameter("username", username).getResultList();
 		return projects;
 	}
+	
+	public Project getBaseProjectByUsername(String username) {
+		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username and is_base_project=1")
+				.setParameter("username", username).getResultList();
+		return projects.get(0);
+	}
 
 	@Transactional
 	public void deleteProject(Project project) {
