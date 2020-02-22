@@ -25,9 +25,11 @@ public class ProjectService {
 
 	public boolean addOrEditSite(Project project) {
 		Project fondProject = repo.getProjectByuuid(project.getUuid());
+		
 
 		if (fondProject == null) {
 			logger.info("not fond project with uuid: " + project.getUuid() + " adding new project...");
+
 			repo.addOrEdit(project);
 			return true;
 		} else {
@@ -46,10 +48,10 @@ public class ProjectService {
 		return projects;
 	}
 
-	public Project create5starProject() {
+	public Project create5starBaseProject() {
 		Project project = new Project();
+		project.setBaseProject(true);
 		List<Status> statuesList = new ArrayList<Status>();
-
 		Status status1 = new Status();
 		status1.setName("instalacja strony");
 		status1.setStatusNote("Paczki instalacyjne: link");
@@ -101,6 +103,17 @@ public class ProjectService {
 		status8.setStatusNote("ustaw JCH");
 		status8.setOrderPlace(7);
 		statuesList.add(status8);
+		project.setStatues(statuesList);
+		return project;
+	}
+	
+	public Project create5starProject() {
+		Project project = new Project();
+		Status status2 = new Status();
+		status2.setName("Aktualizacja");
+		status2.setStatusNote("Link do aktualizacji: link");
+		List<Status> statuesList = new ArrayList<Status>();
+		statuesList.add(status2);
 		project.setStatues(statuesList);
 		return project;
 	}

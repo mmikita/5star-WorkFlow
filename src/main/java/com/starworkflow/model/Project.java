@@ -28,6 +28,13 @@ public class Project {
 		return isBaseProject;
 	}
 
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", name=" + name + ", contractNumber=" + contractNumber + ", URL=" + URL
+				+ ", isBaseProject=" + isBaseProject + ", statues=" + statues + ", userName=" + userName + ", uuid="
+				+ uuid + "]";
+	}
+
 	public void setBaseProject(boolean isBaseProject) {
 		this.isBaseProject = isBaseProject;
 	}

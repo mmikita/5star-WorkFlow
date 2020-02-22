@@ -54,6 +54,7 @@ public class ProjectController {
 	@PostMapping(path = "/projects/addNew5star",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
+    	System.out.print(project.toString() + "---------------------------------------------------");
 
 		return service.addOrEditSite(project);
 	}

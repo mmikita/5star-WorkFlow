@@ -8,7 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
 
+import com.starworkflow.model.Project;
 import com.starworkflow.model.User;
+import com.starworkflow.repository.ProjectRepository;
 import com.starworkflow.repository.UserRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class UserService {
 	static Logger logger = Logger.getLogger(UserService.class);
 	@Autowired
 	UserRepository repository;
+	
+	@Autowired
+	ProjectService projectService;
 
 	public boolean registerUser(Map<String, Object> data) {
 		String newUsername = (String) data.get("username");
@@ -44,12 +49,19 @@ public class UserService {
 		} else {
 			logger.info("wrong hidden password");
 		}
+		if(toReturn) {
+		
+			Project project = projectService.create5starBaseProject();
+		project.setUserName(newUsername);
+			projectService.addOrEditSite(project);
+		}
 		return toReturn;
 	}
 
 	public User getUserUserName(String username) {
 
 		return repository.getUserByUsername(username);
+		
 
 	}
 
