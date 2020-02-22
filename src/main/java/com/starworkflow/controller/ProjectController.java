@@ -43,8 +43,9 @@ public class ProjectController {
 	  private UserDetailsService jwtInMemoryUserDetailsService;
 	
 	@PostMapping("/projects/createNew5star")
-	public String getEmployeeByID() {
-		Project project = service.create5starProject();
+	public String getEmployeeByID(@RequestBody Map<String, String> data) {
+		String username = data.get("userName");
+		Project project = service.create5starProject(username);
 		Gson gson = new Gson();
 		String starinJson = gson.toJson(project);
 		return starinJson;
@@ -54,7 +55,6 @@ public class ProjectController {
 	@PostMapping(path = "/projects/addNew5star",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public boolean addNew5Star(@RequestBody(required=false) Project project) {
-    	System.out.print(project.toString() + "---------------------------------------------------");
 
 		return service.addOrEditSite(project);
 	}
