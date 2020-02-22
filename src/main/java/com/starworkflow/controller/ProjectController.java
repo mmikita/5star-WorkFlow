@@ -85,15 +85,15 @@ public class ProjectController {
 	
 	@PostMapping("/projects/deleteStatus")
 	public boolean deleteStatus(@RequestBody Map<String, String> data) {
-    service.deleteStatusByUuid(data.get("uuid"));
+    service.deleteStatusByUuid(data.get("uuid"), data.get("projectUuid"));
 		return true;
 	}
 	
 	@PostMapping("/projects/addStatus")
-	public boolean addStatus(@RequestBody Map<String, String> data) {
-service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
-		
-		return true;
+	public String addStatus(@RequestBody Map<String, String> data) {
+Status status = service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
+	
+		return status.getUuid();
 	}
 	
 

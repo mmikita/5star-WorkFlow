@@ -111,11 +111,19 @@ public class ProjectService {
 		repo.deleteProject(project);
 	}
 	
-	public void deleteStatusByUuid(String uuid) {
+	public void deleteStatusByUuid(String uuid, String projectUuid) {
 		logger.info("delete status with uuid " + uuid);
 		repo.deleteStatusByUuid(uuid);
+		Project project = repo.getProjectByuuid(projectUuid);
+	     for (int i = 0; i < project.getStatues().size(); i++) {
+             project.getStatues().get(i).setOrderPlace(i);
+	    	          }
+	     repo.addOrEdit(project);
+		
 	}
 
+	
+	
 	public Project getProjectByUUid(String uuid) {
 		Project project = repo.getProjectByuuid(uuid);
 		Collections.sort(project.getStatues());
@@ -138,7 +146,7 @@ public class ProjectService {
 
 	}
 	
-	public void addStatus(String name, String statusNote, String projectUuid) {
+	public Status addStatus(String name, String statusNote, String projectUuid) {
 		
 		Project project = repo.getProjectByuuid(projectUuid);
 		Status status = new Status();
@@ -147,6 +155,8 @@ public class ProjectService {
 		status.setOrderPlace(project.getStatues().size());
 		project.getStatues().add(status);
 		repo.addOrEdit(project);
+		
+		return status;
 		
 	}
 

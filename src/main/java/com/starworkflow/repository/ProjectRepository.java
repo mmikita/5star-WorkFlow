@@ -88,7 +88,7 @@ public class ProjectRepository {
 	}
 	
 	public List<Project> getProjecsByUsername(String username) {
-		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username")
+		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username and is_base_project=0")
 				.setParameter("username", username).getResultList();
 		return projects;
 	}

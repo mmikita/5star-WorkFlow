@@ -21,9 +21,18 @@ public class Project {
 	 private String name;
 	 private String contractNumber;
 	 private String URL;
+	 private boolean isBaseProject;
 
 
-	 public String getContractNumber() {
+	 public boolean isBaseProject() {
+		return isBaseProject;
+	}
+
+	public void setBaseProject(boolean isBaseProject) {
+		this.isBaseProject = isBaseProject;
+	}
+
+	public String getContractNumber() {
 		return contractNumber;
 	}
 
