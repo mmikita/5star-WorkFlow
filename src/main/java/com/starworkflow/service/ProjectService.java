@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,7 +116,7 @@ public class ProjectService {
 		List<Status> statuesList = baseProject.getStatues();
 		  Gson gson = new Gson();
 		  Project project = gson.fromJson(gson.toJson(baseProject), Project.class);
-		  project.setUuid(null);
+		  project.setUuid(UUID.randomUUID().toString());
 		  project.setId(null);
 		  List<Status> newStatues = new ArrayList<>();
 			for(Status status : project.getStatues()) {
