@@ -146,7 +146,11 @@ public class ProjectService {
 		
 	}
 
-	
+	public Project getBaseProject(String username) {
+
+		return repo.getBaseProjectByUsername(username);
+
+	}
 	
 	public Project getProjectByUUid(String uuid) {
 		Project project = repo.getProjectByuuid(uuid);

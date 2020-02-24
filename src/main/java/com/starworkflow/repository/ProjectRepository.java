@@ -48,6 +48,8 @@ public class ProjectRepository {
 		}
 		return null;
 	}
+	
+
 
 	public Status getStatusByuuid(String uuid) {
 		List<Status> statues = em.createQuery("SELECT s FROM Status s WHERE s.uuid = :uuid").setParameter("uuid", uuid)
@@ -96,6 +98,7 @@ public class ProjectRepository {
 	public Project getBaseProjectByUsername(String username) {
 		List<Project> projects = em.createQuery("SELECT p FROM Project p WHERE p.userName = :username and is_base_project=1")
 				.setParameter("username", username).getResultList();
+
 		return projects.get(0);
 	}
 

@@ -64,9 +64,7 @@ public class ProjectController {
 	@PostMapping(path = "/projects/getProjectsByUser",headers = {
     "content-type=application/json" }, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public List<Project> getAllProjectsByUser(@RequestBody User user) {
-    	
         final UserDetails userDetails = jwtInMemoryUserDetailsService.loadUserByUsername(user.getLogin());
-
     	List<Project> projects = service.getAllProjectsByUserName(user.getLogin());
 		return projects;
 	}
@@ -90,10 +88,15 @@ public class ProjectController {
 		return true;
 	}
 	
+	@PostMapping("/projects/getBaseProject")
+	public Project getBaseProject(@RequestBody Map<String, String> data) {
+	String username = data.get("username");
+		return service.getBaseProject(username);
+	}
+	
 	@PostMapping("/projects/addStatus")
 	public String addStatus(@RequestBody Map<String, String> data) {
 Status status = service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
-	
 		return status.getUuid();
 	}
 	
