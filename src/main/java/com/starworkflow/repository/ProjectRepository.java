@@ -66,6 +66,13 @@ public class ProjectRepository {
 				.setParameter("uuid", uuid).setParameter("finish", finish).setParameter("skipped", skipped)
 				.executeUpdate();
 	}
+	
+	@Transactional
+	public void updateStatusUserNote(String uuid, String userNote) {
+		em.createQuery("update Status s set s.userNote = :userNote")
+				.setParameter("uuid", uuid).setParameter("userNote", userNote)
+				.executeUpdate();
+	}
 
 	@Transactional
 	public void updateStatusOrder(Status status) {

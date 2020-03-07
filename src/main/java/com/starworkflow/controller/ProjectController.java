@@ -96,7 +96,7 @@ public class ProjectController {
 	
 	@PostMapping("/projects/addStatus")
 	public String addStatus(@RequestBody Map<String, String> data) {
-Status status = service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
+		Status status = service.addStatus(data.get("name"), data.get("statusNote"), data.get("uuid"));
 		return status.getUuid();
 	}
 	
@@ -115,6 +115,12 @@ service.updateOrderPlaces(data);
 		return true;
 	}
     
+	
+	@PostMapping("/projects/updateStatusUserNote")
+	public boolean updateStatusUserNote(@RequestBody Map<String, Object> data) {
+		service.updateStatusUSerNore((String)data.get("uuid"), (String)data.get("userNote"));
+		return true;
+	}
     
     
     

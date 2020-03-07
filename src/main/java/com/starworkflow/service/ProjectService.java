@@ -163,6 +163,12 @@ public class ProjectService {
 		logger.info("updating status project with uuid " + uuid + "  to skipped: " + skipped + "  and finish: " + finish);
 		repo.changeStatus(finish, skipped, uuid);
 	}
+	
+	
+	public void updateStatusUSerNore(String uuid, String userNote) {
+		logger.info("updating status user note, userUUid: " + uuid+" newUserNote: "+userNote);
+		repo.updateStatusUserNote(uuid, userNote);
+	}
 
 	public void updateOrderPlaces(List<Status> data) {
 		for (Status status : data) {
