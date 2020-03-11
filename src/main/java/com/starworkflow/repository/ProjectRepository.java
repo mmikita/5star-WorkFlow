@@ -69,7 +69,7 @@ public class ProjectRepository {
 	
 	@Transactional
 	public void updateStatusUserNote(String uuid, String userNote) {
-		em.createQuery("update Status s set s.userNote = :userNote")
+		em.createQuery("update Status s set s.userNote = :userNote where s.uuid = :uuid")
 				.setParameter("uuid", uuid).setParameter("userNote", userNote)
 				.executeUpdate();
 	}
