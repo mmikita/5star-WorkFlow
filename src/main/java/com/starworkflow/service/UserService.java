@@ -43,7 +43,6 @@ public class UserService {
 				repository.addUser(newUsername, encodedPassword);
 				toReturn = true;
 			} catch (Exception e) {
-				// System.out.print("Bład------------");
 				return false;
 			}
 		} else {
